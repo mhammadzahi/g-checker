@@ -4,32 +4,16 @@ After=network.target
 
 [Service]
 Type=simple
-
-# Run as your user
 User=mohammad
 Group=mohammad
 
-# Project directory
 WorkingDirectory=/home/mohammad/g-checker
+ExecStart=/home/mohammad/g-checker/env/bin/python /home/mohammad/g-checker/bot.py
 
-# Load environment variables (like TELEGRAM_BOT_TOKEN and ALLOWED_USER_ID)
-EnvironmentFile=/home/mohammad/g-checker/.env
-
-# Start command
-# We use the python executable located inside your virtual environment (env)
-ExecStart=/home/mohammad/g-checker/env/bin/python bot.py
-
-# Restart policy (auto-restart on crash)
 Restart=always
 RestartSec=5
-
-# Logging
 StandardOutput=journal
 StandardError=journal
-
-# Security (safe defaults)
-NoNewPrivileges=true
-PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
